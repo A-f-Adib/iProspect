@@ -10,17 +10,18 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var prospects = Prospects()
+    var labelName = LabelName()
     
     var body: some View {
         TabView {
             ProspectsView(filter: .none)
                 .tabItem {
-                    Label("EveryOne", systemImage: "person.3")
+                    Label(labelName.everyOne, systemImage: labelName.personImg )
                 }
             
             ProspectsView(filter: .contacted)
                 .tabItem {
-                    Label("Contacted", systemImage: "checkmark.circle")
+                    Label(labelName.contacted, systemImage: "checkmark.circle")
                 }
             
             ProspectsView(filter: .uncontacted)
