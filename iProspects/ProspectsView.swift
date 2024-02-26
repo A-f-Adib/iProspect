@@ -16,6 +16,8 @@ struct ProspectsView: View {
     
     @State private var isShowingScanner = false
     
+    var labelName = LabelName()
+    
     enum Filtertype {
         case none, contacted, uncontacted
     }
@@ -26,11 +28,11 @@ struct ProspectsView: View {
     var title : String {
         switch filter {
         case .none:
-            return "Everyone"
+            return labelName.everyOne
         case .contacted:
-            return "Contacted people"
+            return labelName.contacted
         case .uncontacted:
-            return "Uncontacted people"
+            return labelName.uncontacted
         }
     }
     
@@ -60,21 +62,21 @@ struct ProspectsView: View {
                             Button {
                                 prospects.toggle(prospect)
                             } label: {
-                                Label("Mark Uncontacted", systemImage: "person.crop.circle.fill.badge.checkmark")
+                                Label(labelName.markUncont, systemImage: labelName.unconImg)
                                     .font(.headline)
                             }.tint(.green)
                         } else {
                             Button {
                                 prospects.toggle(prospect)
                             } label: {
-                                Label("Mark Contacted", systemImage: "person.crop.circle.badge.xmark")
+                                Label(labelName.markCont, systemImage: labelName.contImg)
                                     .font(.headline)
                             }.tint(.blue)
                             
                             Button{
                                 addNotification(for: prospect)
                             } label: {
-                                Label ("Remind Me", systemImage: "bell")
+                                Label (labelName.remind, systemImage: labelName.bell)
                             }.tint(.orange)
                         }
                     }
@@ -86,7 +88,7 @@ struct ProspectsView: View {
                        isShowingScanner = true
                         
                     } label: {
-                        Label("Scan", systemImage: "qrcode.viewfinder")
+                        Label(labelName.scan, systemImage: labelName.qrCode)
                             .font(.title)
                     }
                 }

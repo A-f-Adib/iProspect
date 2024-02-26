@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var prospects = Prospects()
+    
     var labelName = LabelName()
     
     var body: some View {
@@ -21,17 +22,17 @@ struct ContentView: View {
             
             ProspectsView(filter: .contacted)
                 .tabItem {
-                    Label(labelName.contacted, systemImage: "checkmark.circle")
+                    Label(labelName.contacted, systemImage: labelName.checkmark)
                 }
             
             ProspectsView(filter: .uncontacted)
                 .tabItem {
-                    Label("Uncontacted", systemImage: "questionmark.diamond")
+                    Label(labelName.uncontacted, systemImage: labelName.qmark )
                 }
             
             MeView()
                 .tabItem {
-                    Label("Me", systemImage: "person.crop.square")
+                    Label(labelName.me, systemImage: labelName.person)
                 }
         }.environmentObject(prospects)
     }
